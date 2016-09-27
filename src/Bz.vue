@@ -17,6 +17,13 @@
       key: {
         type: String,
         required: true
+      },
+      call_back: {
+        type: Function
+      },
+      web_socket: {
+        type: Object,
+        twoWay: true
       }
     },
     components: {
@@ -47,7 +54,8 @@
       },
       onMessage: function (event) {
         let data = JSON.parse(event.data)
-        if (data.error !== '0') console.log(data.error)
+        if (data.error !== '0') throw new Error(data.error)
+        if (this.call_back) this.call_back(data)
       },
       register: function () {
         console.log('connected and register')
