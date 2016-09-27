@@ -43,14 +43,14 @@
     },
     methods: {
       init: function () {
+        console.log('init')
         let url = 'ws://' + window.location.hostname + ':' + window.location.port + this.path
         this.web_socket = new window.WebSocket(url)
         this.web_socket.onopen = this.register
         this.web_socket.onclose = this.onClose
       },
       onClose: function (event) {
-        this.web_socket = null
-        window.setTimeout(this.init(), 2000)
+        window.setTimeout(this.init(), 5000)
       },
       onMessage: function (event) {
         let data = JSON.parse(event.data)
