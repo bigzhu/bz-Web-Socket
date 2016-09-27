@@ -13,27 +13,49 @@
       path: {
         type: String,
         required: true
+      },
+      key: {
+        type: String,
+        required: true
       }
     },
     components: {
     },
+    computed: {
+    },
+    watch: {
+    },
     data: function () {
       return {
-        state: 0,
         web_socket: {}
       }
     },
     ready () {
-      if (_.isEmpty(this.web_socket)) {
-        let url = 'ws://' + window.location.hostname + ':' + window.location.port + this.path
-        // url = 'ws://127.0.0.1:9000/web_socket'
-        this.web_socket = new window.WebSocket(url)
-      }
+      if (_.isEmpty(this.web_socket)) this.init()
       this.web_socket.onmessage = this.onMessage
     },
     methods: {
+      init: function () {
+        let url = 'ws://' + window.location.hostname + ':' + window.location.port + this.path
+        this.web_socket = new window.WebSocket(url)
+        this.web_socket.onopen = this.register
+        this.web_socket.onclose = this.onClose
+      },
+      onClose: function (event) {
+        this.web_socket = null
+        window.setTimeout(this.init(), 2000)
+      },
       onMessage: function (event) {
-        console.log(event)
+        let data = JSON.parse(event.data)
+        if (data.error !== '0') console.log(data.error)
+      },
+      register: function () {
+        console.log('connected and register')
+        let data = {}
+        data.oper = 'register'
+        data.key = this.key
+        data = JSON.stringify(data)
+        this.web_socket.send(data)
       }
     }
   }

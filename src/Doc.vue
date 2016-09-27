@@ -9,7 +9,7 @@
       :parms="parms"
       :code="code"
       >
-      <bz path="/web_socket" :call_back="call_back"></bz>
+      <bz path="/web_socket" key="shop_id"></bz>
     </doc>
   </div>
 </template>
