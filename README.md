@@ -1,1 +1,1 @@
-# bz-demo
+# bz-web-socket

@@ -33,7 +33,7 @@
     data: function () {
       return {
         datas: [1],
-        name: 'bz-demo',
+        name: 'bz-web-socket',
         desc: '拉到底部加载',
         parms: [
           {parm: 'el', desc: '使用该组件的el,主要为了把查找last限定在本el中. !注意, fragment的el是无法传递进去的'},
