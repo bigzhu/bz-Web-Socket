@@ -1,6 +1,3 @@
-<style lang=less>
-</style>
-
 <template>
   <div>
   </div>
@@ -14,16 +11,9 @@
         type: String,
         required: true
       },
-      key: {
+      the_key: {
         type: String,
         required: true
-      },
-      call_back: {
-        type: Function
-      },
-      web_socket: {
-        type: Object,
-        twoWay: true
       }
     },
     components: {
@@ -37,34 +27,36 @@
         web_socket: {}
       }
     },
-    ready () {
-      if (_.isEmpty(this.web_socket)) this.init()
+    mounted () {
+      if (_.isEmpty(this.web_socket)) { this.initSocket() }
       this.web_socket.onmessage = this.onMessage
     },
     methods: {
-      init: function () {
-        console.log('init')
+      initSocket: function () {
+        console.log('initSocket')
         let url = 'ws://' + window.location.hostname + ':' + window.location.port + this.path
         this.web_socket = new window.WebSocket(url)
         this.web_socket.onopen = this.register
         this.web_socket.onclose = this.onClose
       },
       onClose: function (event) {
-        window.setTimeout(this.init(), 5000)
+        window.setTimeout(this.initSocket(), 5000)
       },
       onMessage: function (event) {
         let data = JSON.parse(event.data)
-        if (data.error !== '0') throw new Error(data.error)
-        if (this.call_back) this.call_back(data)
+        if (data.error !== '0') { throw new Error(data.error) }
+        this.$emit('on_message', data)
       },
       register: function () {
         console.log('connected and register')
         let data = {}
         data.oper = 'register'
-        data.key = this.key
+        data.key = this.the_key
         data = JSON.stringify(data)
         this.web_socket.send(data)
       }
     }
   }
 </script>
+<style>
+</style>

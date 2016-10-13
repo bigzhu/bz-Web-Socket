@@ -1,6 +1,3 @@
-<style lang=less>
-</style>
-
 <template>
   <div>
     <doc :name="name"
@@ -9,7 +6,7 @@
       :parms="parms"
       :code="code"
       >
-      <bz path="/web_socket" key="shop_id"></bz>
+      <bz v-on:on_message="call_back" path="/web_socket" the_key="shop_id"></bz>
     </doc>
   </div>
 </template>
@@ -25,10 +22,6 @@
       Doc
     },
     route: {
-      deactivate: function (transition) {
-        this.$broadcast('unbind-scroll')
-        transition.next()
-      }
     },
     data: function () {
       return {
@@ -40,14 +33,17 @@
           {parm: 'element_class', desc: '用于定位last的class .hah.jj 的格式'},
           {parm: 'call_back', desc: '滚到底部的回调函数'}
         ],
-        parm_desc: `注意，如果使用的组件有路由，那么最好在切换路由的时候发送消息，解除绑定(参看本例子) <code>this.$broadcast('unbind-scroll')</code>`,
+        parm_desc: ``,
         code: `<bottom-loader :el="$el" element_class=".ui.card" :call_back="call_back"></bottom-loader>`
       }
     },
     methods: {
-      call_back: function () {
-        this.datas.push(this.datas.length + 1)
+      call_back: function (data) {
+        console.log(data)
       }
     }
   }
 </script>
+
+<style>
+</style>
