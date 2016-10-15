@@ -14,6 +14,10 @@
       the_key: {
         type: String,
         required: true
+      },
+      web_socket: {
+        type: Object,
+        default: {}
       }
     },
     components: {
@@ -24,20 +28,20 @@
     },
     data: function () {
       return {
-        web_socket: {}
       }
     },
     mounted () {
-      if (_.isEmpty(this.web_socket)) { this.initSocket() }
-      this.web_socket.onmessage = this.onMessage
+      if (_.isEmpty(this.web_socket)) {
+        this.initSocket() 
+      }
     },
     methods: {
       initSocket: function () {
-        console.log('initSocket')
         let url = 'ws://' + window.location.hostname + ':' + window.location.port + this.path
         this.web_socket = new window.WebSocket(url)
         this.web_socket.onopen = this.register
         this.web_socket.onclose = this.onClose
+        this.web_socket.onmessage = this.onMessage
       },
       onClose: function (event) {
         window.setTimeout(this.initSocket(), 5000)
@@ -48,7 +52,6 @@
         this.$emit('on_message', data)
       },
       register: function () {
-        console.log('connected and register')
         let data = {}
         data.oper = 'register'
         data.key = this.the_key
