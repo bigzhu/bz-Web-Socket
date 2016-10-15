@@ -21,6 +21,9 @@
     computed: {
     },
     watch: {
+      'the_key': function (val) {
+        this.initSocket() 
+      }
     },
     data: function () {
       return {
@@ -54,6 +57,7 @@
         data.key = this.the_key
         data = JSON.stringify(data)
         this.web_socket.send(data)
+        console.log('register web socke with key' + this.the_key)
       }
     }
   }
