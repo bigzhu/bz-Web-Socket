@@ -22,7 +22,7 @@
     },
     watch: {
       'the_key': function (val) {
-        this.initSocket() 
+        this.initSocket()
       }
     },
     data: function () {
@@ -32,7 +32,7 @@
     },
     mounted () {
       if (_.isEmpty(this.web_socket)) {
-        this.initSocket() 
+        this.initSocket()
       }
     },
     methods: {
