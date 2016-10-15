@@ -14,10 +14,6 @@
       the_key: {
         type: String,
         required: true
-      },
-      web_socket: {
-        type: Object,
-        default: {}
       }
     },
     components: {
@@ -28,6 +24,7 @@
     },
     data: function () {
       return {
+        web_socket: {}
       }
     },
     mounted () {
@@ -49,7 +46,7 @@
       onMessage: function (event) {
         let data = JSON.parse(event.data)
         if (data.error !== '0') { throw new Error(data.error) }
-        this.$emit('on_message', data)
+        this.$emit('on_message', data, this.web_socket)
       },
       register: function () {
         let data = {}
