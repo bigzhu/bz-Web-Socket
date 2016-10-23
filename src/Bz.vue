@@ -14,6 +14,9 @@
       the_key: {
         type: String,
         required: true
+      },
+      pro: {
+        default: 'ws'
       }
     },
     components: {
@@ -37,7 +40,7 @@
     },
     methods: {
       initSocket: function () {
-        let url = 'ws://' + window.location.hostname + ':' + window.location.port + this.path
+        let url = this.pro + '://' + window.location.hostname + ':' + window.location.port + this.path
         this.web_socket = new window.WebSocket(url)
         this.web_socket.onopen = this.register
         this.web_socket.onclose = this.onClose
@@ -57,7 +60,7 @@
         data.key = this.the_key
         data = JSON.stringify(data)
         this.web_socket.send(data)
-        console.log('register web socke with key' + this.the_key)
+        console.log('register web socke with key: ' + this.the_key)
       }
     }
   }
