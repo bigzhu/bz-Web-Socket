@@ -65,5 +65,3 @@
     }
   }
 </script>
-<style>
-</style>
