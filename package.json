@@ -1,7 +1,7 @@
 {
-  "name": "bz-web-socket",
-  "version": "2.0.4",
-  "description": "bz-web-socket",
+  "name": "bz-base",
+  "version": "2.0.0",
+  "description": "bz-base",
   "main": "dist/main.js",
   "keywords": [
     "vue",
@@ -11,29 +11,21 @@
   "author": "bigzhu <vermiliondun@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bigzhu/bz-web-socket.git"
+    "url": "git+https://github.com/bigzhu/bz-base.git"
   },
   "bugs": {
-    "url": "https://github.com/bigzhu/bz-web-socket/issues"
+    "url": "https://github.com/bigzhu/bz-base/issues"
   },
-  "homepage": "https://github.com/bigzhu/bz-web-socket#readme",
+  "homepage": "https://github.com/bigzhu/bz-base#readme",
   "files": [
     "dist"
   ],
   "scripts": {
     "dev": "node build/dev-server.js",
-    "build": "node build/build.js",
+    "build": "node build/pack.js",
     "test": ""
   },
   "dependencies": {
-    "bz-semantic-ui-button": "latest",
-    "bz-semantic-ui-container": "latest",
-    "bz-semantic-ui-divider": "latest",
-    "bz-semantic-ui-reset": "latest",
-    "bz-semantic-ui-site": "latest",
-    "bz-semantic-ui-table": "latest",
-    "toastr": "latest",
-    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "vue": "latest",
