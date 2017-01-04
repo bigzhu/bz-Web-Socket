@@ -1,6 +1,6 @@
-# bz-web-socket
+# bz-base
 
-> bz-web-socket
+> bz-base
 
 ## Build Setup
 

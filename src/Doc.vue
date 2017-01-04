@@ -12,8 +12,6 @@
 </template>
 
 <script>
-  import 'bz-semantic-ui-card'
-  import 'bz-semantic-ui-grid'
   import Bz from './Bz'
   import Doc from 'bz-doc'
   export default {
@@ -44,6 +42,3 @@
     }
   }
 </script>
-
-<style>
-</style>
