@@ -4,7 +4,6 @@
 </template>
 
 <script>
-  import _ from 'underscore'
   export default {
     props: {
       path: {
@@ -30,11 +29,11 @@
     },
     data: function () {
       return {
-        web_socket: {}
+        web_socket: null
       }
     },
     mounted () {
-      if (_.isEmpty(this.web_socket)) {
+      if (this.web_socket === null) {
         this.initSocket()
       }
     },
